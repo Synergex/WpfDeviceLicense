@@ -1,0 +1,14 @@
+C:\support\dl\WPFDeviceLicense\WPFDeviceLicense\bin\Debug\WPFDeviceLicense.exe
+C:\support\dl\WPFDeviceLicense\WPFDeviceLicense\bin\Debug\WPFDeviceLicense.pdb
+C:\support\dl\WPFDeviceLicense\WPFDeviceLicense\obj\Debug\LicenseAbout.baml
+C:\support\dl\WPFDeviceLicense\WPFDeviceLicense\obj\Debug\LoadingDialog.baml
+C:\support\dl\WPFDeviceLicense\WPFDeviceLicense\obj\Debug\LoginDialog.baml
+C:\support\dl\WPFDeviceLicense\WPFDeviceLicense\obj\Debug\MainWindow1.baml
+C:\support\dl\WPFDeviceLicense\WPFDeviceLicense\obj\Debug\RetryDialog.baml
+C:\support\dl\WPFDeviceLicense\WPFDeviceLicense\obj\Debug\WPFDeviceLicense_MarkupCompile.cache
+C:\support\dl\WPFDeviceLicense\WPFDeviceLicense\obj\Debug\WPFDeviceLicense.g.resources
+C:\support\dl\WPFDeviceLicense\WPFDeviceLicense\obj\Debug\WPFDeviceLicense.Properties.Resources.resources
+C:\support\dl\WPFDeviceLicense\WPFDeviceLicense\obj\Debug\WPFDeviceLicense.synproj.GenerateResource.Cache
+C:\support\dl\WPFDeviceLicense\WPFDeviceLicense\obj\Debug\WPFDeviceLicense.exe
+C:\support\dl\WPFDeviceLicense\WPFDeviceLicense\obj\Debug\WPFDeviceLicense.pdb
+c:\support\dl\WPFDeviceLicense\WPFDeviceLicense\obj\Debug\WPFDeviceLicense.synprojResolveAssemblyReference.cache
