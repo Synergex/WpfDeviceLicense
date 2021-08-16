@@ -1,0 +1,16 @@
+﻿<Window x:Class="WPFDeviceLicense.RetryDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="License Message" Height="159" Width="431">
+    <Grid Margin="0,0,0,8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="369*"/>
+            <ColumnDefinition Width="88*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Name="msgBlock" HorizontalAlignment="Left" Margin="31,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="352" Height="55" Grid.ColumnSpan="2"/>
+        <Button Name="yesBtn" Content="Yes" HorizontalAlignment="Left" Margin="31,88,0,0" VerticalAlignment="Top" Width="75" Click="yesBtn_Click"/>
+        <Button Name="noBtn" Content="No" Margin="161,88,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.4,-0.35" Click="noBtn_Click" HorizontalAlignment="Left" Width="75"/>
+        <Button Name="debugBtn" Content="Debug" HorizontalAlignment="Left" Margin="308,88,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Click="debugBtn_Click"/>
+
+    </Grid>
+</Window>

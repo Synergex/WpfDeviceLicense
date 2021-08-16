@@ -1,0 +1,103 @@
+﻿import System
+import System.Collections.Generic
+import System.Linq
+import System.Text
+import System.Windows
+import System.Windows.Controls
+import System.Windows.Data
+import System.Windows.Documents
+import System.Windows.Input
+import System.Windows.Media
+import System.Windows.Media.Imaging
+import System.Windows.Shapes
+import System.Windows.Threading
+import System.Threading.Tasks
+
+namespace WPFDeviceLicense
+
+    ;;; <summary>
+    ;;; Interaction logic for RetryDialog.xaml
+	;;; </summary>
+
+	public enum RetryValue
+		Yes,
+		No,
+		Debug
+	endenum
+	public enum RetryButtons
+		YesNoDebug,	
+		OKDebug,
+		OK,
+		Debug
+	endenum
+    public partial class RetryDialog extends Window
+    
+		private retvalue, RetryValue
+		
+		public static method ShowRetryDialog, RetryValue
+			msg, string
+			rbuttons, RetryButtons
+		proc
+			data rd = new RetryDialog(msg,rbuttons)
+			rd.ShowDialog()
+			mreturn rd.retvalue
+		end
+		public method RetryDialog
+			msg, string
+			rbuttons, RetryButtons
+		proc
+			this.InitializeComponent()
+			msgBlock.Text = msg
+			if (rbuttons == RetryButtons.OK) then
+			begin
+				yesBtn.Content = "OK"
+				noBtn.Visibility = Visibility.Hidden
+				debugBtn.Visibility = Visibility.Hidden
+			end
+			else if (rbuttons == RetryButtons.Debug) then
+			begin
+				yesBtn.Visibility = Visibility.Hidden
+				noBtn.Visibility = Visibility.Hidden
+			end
+			else if (rbuttons == RetryButtons.OKDebug)
+			begin
+				yesBtn.Content = "OK"
+				noBtn.Visibility = Visibility.Hidden
+			end
+			retvalue = RetryValue.Yes
+		endmethod
+		
+		private method yesBtn_Click, void
+			sender, @object 
+			e, @System.Windows.RoutedEventArgs 
+			endparams
+		proc
+			retvalue = RetryValue.Yes
+			this.Close();
+		endmethod
+		
+		private method noBtn_Click, void
+			sender, @object 
+			e, @System.Windows.RoutedEventArgs 
+			endparams
+		proc
+			retvalue = RetryValue.No
+			this.Close();
+		endmethod
+		
+		
+		private method debugBtn_Click, void
+			sender, @object 
+			e, @System.Windows.RoutedEventArgs 
+			endparams
+		proc
+			data pushedFrame = new DispatcherFrame()
+			data aboutDialog = new Window()
+			aboutDialog.Content = new WPFDeviceLicense.LicenseAboutDialog(pushedFrame)
+			aboutDialog.Show()
+			retvalue = RetryValue.Debug
+			this.Close();
+		endmethod
+		
+    endclass
+endnamespace

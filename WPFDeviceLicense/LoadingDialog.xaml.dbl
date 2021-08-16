@@ -1,0 +1,29 @@
+import System
+import System.Collections.Generic
+import System.Linq
+import System.Text
+import System.Windows
+import System.Windows.Controls
+import System.Windows.Data
+import System.Windows.Documents
+import System.Windows.Input
+import System.Windows.Media
+import System.Windows.Media.Imaging
+import System.Windows.Navigation
+import System.Windows.Shapes
+
+namespace WPFDeviceLicense
+
+	;;; <summary>
+	;;; Interaction logic for LicenseDialog.xaml
+	;;; </summary>
+	public partial class LoadingDialog extends UserControl
+		
+		public method LoadingDialog
+			endparams
+		proc
+			this.InitializeComponent()
+		endmethod
+	endclass
+endnamespace
+

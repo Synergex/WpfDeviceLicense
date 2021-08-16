@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="WPFDeviceLicense.LoginDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+        <Grid>
+            <Button Content="Login" HorizontalAlignment="Left" Margin="48,241,0,0" VerticalAlignment="Top" Width="75" Click="LoginButton_Click"/>
+            <Button Content="Exit" HorizontalAlignment="Left" Margin="152,241,0,0" VerticalAlignment="Top" Width="75" Click="CancelButton_Click"/>
+            <Label Content="Token" HorizontalAlignment="Left" Margin="38,10,0,0" VerticalAlignment="Top"/>
+            <Label Content="Password" HorizontalAlignment="Left" Margin="38,66,0,0" VerticalAlignment="Top"/>
+            <Label Content="Device Description" HorizontalAlignment="Left" Margin="38,120,0,0" VerticalAlignment="Top"/>
+            <TextBox x:FieldModifier="public" x:Name="tokenBox" HorizontalAlignment="Left" Height="23" Margin="48,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="242" RenderTransformOrigin="-0.175,0.652"/>
+            <PasswordBox x:FieldModifier="public" x:Name="passwordBox" PasswordChar="*" HorizontalAlignment="Left" Height="23" Margin="48,92,0,0" VerticalAlignment="Top" Width="242" RenderTransformOrigin="-0.175,0.652"/>
+            <TextBox x:FieldModifier="public" x:Name="descriptionBox" HorizontalAlignment="Left" Height="23" Margin="48,151,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="242" RenderTransformOrigin="-0.175,0.652"/>
+
+        </Grid>
+    </UserControl>
+

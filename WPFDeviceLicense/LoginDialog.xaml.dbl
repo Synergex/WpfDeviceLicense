@@ -1,0 +1,109 @@
+import System
+import System.Collections.Generic
+import System.Linq
+import System.Text
+import System.Windows
+import System.Windows.Controls
+import System.Windows.Data
+import System.Windows.Documents
+import System.Windows.Input
+import System.Windows.Media
+import System.Windows.Media.Imaging
+import System.Windows.Navigation
+import System.Windows.Shapes
+import Synergex.SynergyDE.DeviceLicensing
+import System.Windows.Threading
+
+namespace WPFDeviceLicense
+	
+	;;; <summary>
+	;;; Interaction logic for LoginDialog.xaml
+	;;; </summary>
+	public partial class LoginDialog extends UserControl
+		
+		private logintry, int
+		private dispatchFrame, @DispatcherFrame
+		public method LoginDialog
+			dispFrame, @DispatcherFrame
+			endparams
+		proc
+			this.InitializeComponent()
+			data linfo = DeviceLicensing.DeviceLicensing.GetLicenseInfo()
+			if (linfo != ^null)
+			begin	
+				tokenBox.Text = linfo.Token
+				descriptionBox.Text = linfo.Description
+			end		
+			dispatchFrame = dispFrame 
+
+		endmethod
+		
+		private method ShowFail, void
+			lerr, Synergex.SynergyDE.DeviceLicensing.LicenseError
+		proc
+			data li, @LicenseInfo
+			li = DeviceLicensing.GetLicenseInfo()
+			data resultText= "failed to license device: " + LicenseAboutDialog.ErrorMessage(lerr)
+			if (li.Status == LicenseStatus.Grace) then
+			begin
+				resultText += Environment.NewLine+"Application is in a grace period that expires "+li.Expiration+Environment.NewLine+"Please contact your ISV for assistance"
+			end
+			else if (li.Status == LicenseStatus.NotActive)
+			begin
+				resultText += Environment.NewLine+"License is not active and application will be shut down."
+			end
+			MessageBox.Show(resultText,"Device License Error")
+			dispatchFrame.Continue = false
+			logintry = 0
+		end
+
+		public async method LoginButton_Click, void
+			sender, @object
+			e, @System.Windows.RoutedEventArgs 
+		proc
+			data result, Synergex.SynergyDE.DeviceLicensing.LicenseError
+			incr logintry
+			data token = tokenBox.Text
+			data password = passwordBox.Password
+			data description = descriptionBox.Text
+			result = await DeviceLicensing.Activate(token, password, description)
+			if(result != Synergex.SynergyDE.DeviceLicensing.LicenseError.None) then
+			begin
+				if (logintry < 3) then
+				begin
+					data linfo = DeviceLicensing.GetLicenseInfo()
+					if (result == Synergex.SynergyDE.DeviceLicensing.LicenseError.NotFound) then
+					begin
+						data msg = LicenseAboutDialog.ErrorMessage(result)+". Please deactivate the device."
+						data mbr = RetryDialog.ShowRetryDialog(msg,RetryButtons.Debug)
+					end
+					else if ((linfo.Status == LicenseStatus.NotActive) || (result == Synergex.SynergyDE.DeviceLicensing.LicenseError.Unauthorized || result == Synergex.SynergyDE.DeviceLicensing.LicenseError.DuplicateDevice)) then
+					begin
+						data msg = LicenseAboutDialog.ErrorMessage(result)+". Try again?"
+						data mbr = RetryDialog.ShowRetryDialog(msg,RetryButtons.YesNoDebug)
+						if (mbr == RetryValue.No)
+							ShowFail(result)
+					end
+					else
+						ShowFail(result);
+				end
+				else
+					ShowFail(result)
+			end
+			else
+			begin
+				logintry = 0
+				dispatchFrame.Continue = false
+			end
+		endmethod
+		
+		private method CancelButton_Click, void
+			sender, @object 
+			e, @System.Windows.RoutedEventArgs 
+			endparams
+		proc
+			Environment.Exit(-1)
+		endmethod
+	endclass
+endnamespace
+

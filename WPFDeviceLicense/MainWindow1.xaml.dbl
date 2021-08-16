@@ -1,0 +1,46 @@
+import System
+import System.Collections
+import System.Collections.Generic
+import System.Diagnostics
+import System.Text
+import System.Windows
+import System.Windows.Controls
+import System.Windows.Data
+import System.Windows.Documents
+import System.Windows.Input
+import System.Windows.Shapes
+import System.Windows.Media
+import System.Windows.Media.Imaging
+import System.Windows.Navigation
+import System.Windows.Threading
+import Synergex.SynergyDE.DeviceLicensing
+
+
+namespace WPFDeviceLicense
+
+	public partial class MainWindow1 extends Window
+		
+		public method MainWindow1
+			endparams
+			record fred
+				somealpha, a100
+		proc
+			DeviceLicensing.WaitForLicense();
+			this.InitializeComponent()
+			somealpha = "some string"
+		endmethod
+		
+		private async method Button_Click, void
+			sender, @object 
+			e, @System.Windows.RoutedEventArgs 
+			endparams
+		proc
+			data pushedFrame = new DispatcherFrame()
+			data aboutDialog = new Window()
+			aboutDialog.Content = new WPFDeviceLicense.LicenseAboutDialog(pushedFrame)
+			aboutDialog.Show()
+		endmethod
+				
+	endclass
+endnamespace
+
