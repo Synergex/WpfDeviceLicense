@@ -9,3 +9,5 @@
 <hr>
 
 **Additional Information:** The purpose is to show how the calls are made and how error handling is done. Before compiling and running this code, you will need to register with Synergex to get your company's PublicKey and AppGUID and add these values to the SynergyDeviceLicense attribute in LicenseClass.dbl.
+
+Make a change
